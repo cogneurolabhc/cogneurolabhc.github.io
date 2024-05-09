@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>PicScrambler</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Open Sans,Helvetica,Arial,sans-serif;
+            color: purple;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row; /* Aligns children horizontally */
+            align-items: center; /* Aligns items at the start of the container */
+            width: 1000px; /* Adjusted to match the maximum content width */
+        }
+
+        form {
+            padding: 10px;
+            margin: 10px;
+            border-style: solid;
+            border-color: purple;
+            border-width: medium;
+            border-radius: 12px;
+            text-align: center;
+            width: 360; /* Full width of the container */
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type=number] {
+            width: 30%; /* Full width minus padding */
+            padding: 5px; /* More comfortable padding */
+            box-sizing: border-box; /* Includes padding in width */
+        }
+
+        input[type=file] {
+            width: 60%; /* Full width minus padding */
+            padding: 5px; /* More comfortable padding */
+            box-sizing: border-box; /* Includes padding in width */
+        }
+
+        button {
+            margin-top: 1em;
+            width: 55%; /* Full width buttons */
+        }
+
+        #preview {
+            width: 400px;
+            height: 400px;
+            margin: 10px;
+            padding: 10px;
+            border-style: solid;
+            border-color: purple;
+            border-width: medium;
+            border-radius: 12px;
+            display: flex; /* Enables center alignment of the image inside */
+            justify-content: center; /* Centers horizontally */
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="mainToolbox">
+            <form>
+                <label for="image">Select an image:</label>
+                <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png" onchange="displayFunction()">
+                <br><br>
+                <label for="rows">Number of Rows:</label>
+                <input type="number" id="rows" name="rows" min="1" max="10">
+                <br><br>
+                <label for="cols">Number of Columns:</label>
+                <input type="number" id="cols" name="cols" min="1" max="10">
+                <br><br>
+                <button type="button" id="scramble-btn">Scramble Image</button>
+                <button type="button" id="download-btn" disabled>Download</button>
+            </form>
+        </div>
+        <div id="preview"></div>
+    </div>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			var tempCanvas = document.createElement('canvas');
+			var tempCtx = tempCanvas.getContext('2d');
+
+			$('#image').change(function() {
+				var img = new Image();
+				img.onload = function() {
+					canvas.width = img.width;
+					canvas.height = img.height;
+					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 400, 400);
+					$('#preview').html('<img src="' + canvas.toDataURL() + '">');
+				};
+				img.src = URL.createObjectURL($('#image')[0].files[0]);
+			});
+
+			$('#scramble-btn').click(function() {
+				var img = new Image();
+				img.onload = function() {
+					var width = img.width;
+					var height = img.height;
+					var rows = parseInt($('#rows').val());
+					var cols = parseInt($('#cols').val());
+					var rowHeight = Math.ceil(height / rows);
+					var colWidth = Math.ceil(width / cols);
+					width = colWidth * cols;
+					height = rowHeight * rows;
+					canvas.width = width;
+					canvas.height = height;
+					ctx.drawImage(img, 0, 0, width, height);
+					tempCanvas.width = width;
+					tempCanvas.height = height;
+
+					var tiles = [];
+					for (var i = 0; i < rows; i++) {
+						for (var j = 0; j < cols; j++) {
+							var tile = ctx.getImageData(j * colWidth, i * rowHeight, colWidth, rowHeight);
+							tiles.push(tile);
+						}
+					}
+					tiles.sort(function(a, b) { return Math.random() - 0.5; });
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					for (var i = 0; i < rows; i++) {
+						for (var j = 0; j < cols; j++) {
+							ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
+						}
+					}
+					tempCtx.drawImage(canvas, 0, 0);
+					canvas.width = img.width;
+					canvas.height = img.height;
+					ctx = canvas.getContext('2d');
+					ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
+					tempCtx = tempCanvas.getContext('2d');
+					tempCanvas.width = 400;
+					tempCanvas.height = 400;
+					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 400, 400);
+					$('#preview').html('<img src="' + tempCanvas.toDataURL() + '">');
+					$('#download-btn').prop('disabled', false);
+				};
+				img.src = URL.createObjectURL($('#image')[0].files[0]);
+			});
+
+			$('#download-btn').click(function() {
+				var link = document.createElement('a');
+				link.download = 'scrambled_image.png';
+				link.href = canvas.toDataURL();
+				link.click();
+			});
+		});
+	</script>
+</body>
+</html>
