@@ -14,6 +14,15 @@
         background-color: white;
         background-size: cover;
         background-position: center;
+        position: relative;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      height: 80px;
+      width: auto;
     }
 
     .topnav {
@@ -21,12 +30,6 @@
       justify-content: space-between;
       align-items: center;
       background-color: purple;
-    }
-
-    .topnav .logo {
-      margin-left: 0px; /* Adjust space as needed */
-      height: 18px; /* Logo height, adjust as needed */
-      width: auto;
     }
     
     .topnav .nav-links {
@@ -62,9 +65,11 @@
     </style>
 </head>
 <body>
-    <div class="banner"></div>
+    <div class="banner">
+        <a href="index.html"><img class="logo" src="Logo.png" alt="Logo"></a>
+    </div>
     <div class="topnav">
-        <!-- <a href="index.html"><img class="logo" src="eye.png" alt="Logo"></a> -->
+        
         <div class="nav-links">
             <a class="active" href="index.html">Home</a>
             <a href="research/index.html">Research</a>
