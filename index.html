@@ -34,11 +34,15 @@
       color: purple;
       text-align: center;
     }
+    
     .topnav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background-color: purple;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     
     .topnav .nav-links {
@@ -66,11 +70,13 @@
       color: purple;
     }
 
-    .main-image {
-        width: 100%;
-        display: block; /* This will center the image assuming it's not wider than the screen */
+    .main {
+        padding-left: 10%;
+        padding-top: 4%;
+        display: block;
         height: auto;
     }
+
     </style>
 </head>
 <body>
@@ -79,7 +85,6 @@
         <a class="labname" href="index.html">ICUC Lab</a>
     </div>
     <div class="topnav">
-        
         <div class="nav-links">
             <a class="active" href="index.html">Home</a>
             <a href="research/index.html">Research</a>
@@ -89,6 +94,9 @@
             <a href="for-lab-members/index.html">For Lab Members</a>
         </div>
     </div>
-    <img class="main-image" src="A_A_008.jpg" alt="Main Image">
+    <div class="main">
+      <h1>Welcome to the ICUC Lab</h1>
+    </div>
+    
 </body>
 </html>
