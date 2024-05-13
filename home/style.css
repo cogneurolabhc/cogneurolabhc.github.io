@@ -121,6 +121,6 @@ button {
     margin: 0;
     justify-content: center;
     flex-direction: row; /* Aligns children horizontally */
-    align-items: center; /* Aligns items at the start of the container */
+    align-items: start; /* Aligns items at the start of the container */
     width: 1000px; /* Adjusted to match the maximum content width */
 }
