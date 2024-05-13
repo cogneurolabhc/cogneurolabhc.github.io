@@ -72,7 +72,7 @@ body {
     height: auto;
 }
 
-.scamblerform {
+form {
     padding: 10px;
     margin: 10px;
     border-style: solid;
@@ -83,23 +83,23 @@ body {
     width: 360; /* Full width of the container */
 }
 
-.scramblerlabel {
+label {
     font-weight: bold;
 }
 
-.scramblerinput[type=number] {
+input[type=number] {
     width: 30%; /* Full width minus padding */
     padding: 5px; /* More comfortable padding */
     box-sizing: border-box; /* Includes padding in width */
 }
 
-.scramblerinput[type=file] {
+input[type=file] {
     width: 60%; /* Full width minus padding */
     padding: 5px; /* More comfortable padding */
     box-sizing: border-box; /* Includes padding in width */
 }
 
-.scramblerbutton {
+button {
     margin-top: 1em;
     width: 55%; /* Full width buttons */
 }
