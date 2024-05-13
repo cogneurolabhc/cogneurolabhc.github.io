@@ -42,76 +42,62 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
-		$(document).ready(function() {
-			var canvas = document.createElement('canvas');
-			var ctx = canvas.getContext('2d');
-			var tempCanvas = document.createElement('canvas');
-			var tempCtx = tempCanvas.getContext('2d');
-	
-			$('#image').change(function() {
-				var img = new Image();
-				img.onload = function() {
-					canvas.width = img.width;
-					canvas.height = img.height;
-					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 400, 400);
-					$('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
-				};
-				img.src = URL.createObjectURL($('#image')[0].files[0]);
-			});
-	
-			$('#scramble-btn').click(function() {
-				var img = new Image();
-				img.onload = function() {
-					var width = img.width;
-					var height = img.height;
-					var rows = parseInt($('#rows').val());
-					var cols = parseInt($('#cols').val());
-					var rowHeight = Math.ceil(height / rows);
-					var colWidth = Math.ceil(width / cols);
-					width = colWidth * cols;
-					height = rowHeight * rows;
-					canvas.width = width;
-					canvas.height = height;
-					ctx.drawImage(img, 0, 0, width, height);
-					tempCanvas.width = width;
-					tempCanvas.height = height;
-	
-					var tiles = [];
-					for (var i = 0; i < rows; i++) {
-						for (var j = 0; j < cols; j++) {
-							var tile = ctx.getImageData(j * colWidth, i * rowHeight, colWidth, rowHeight);
-							tiles.push(tile);
-						}
-					}
-					tiles.sort(function(a, b) { return Math.random() - 0.5; });
-					ctx.clearRect(0, 0, canvas.width, canvas.height);
-					for (var i = 0; i < rows; i++) {
-						for (var j = 0; j < cols; j++) {
-							ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
-						}
-					}
-					tempCtx.drawImage(canvas, 0, 0);
-					canvas.width = img.width;
-					canvas.height = img.height;
-					ctx = canvas.getContext('2d');
-					ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
-					tempCtx = tempCanvas.getContext('2d');
-					tempCanvas.width = 400;
-					tempCanvas.height = 400;
-					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 400, 400);
-					$('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
-					$('#download-btn').prop('disabled', false);
-				};
-				img.src = URL.createObjectURL($('#image')[0].files[0]);
-			});
-	
-			$('#download-btn').click(function() {
-				var link = document.createElement('a');
-				link.download = 'scrambled_image.png';
-				link.href = canvas.toDataURL();
-				link.click();
-			});
-		});
-	</script>
+        $(document).ready(function() {
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+
+            $('#image').change(function() {
+                var img = new Image();
+                img.onload = function() {
+                    var aspectRatio = img.width / img.height;
+                    var newWidth, newHeight;
+                    if (img.width > img.height) {
+                        newWidth = 400;
+                        newHeight = Math.round(newWidth / aspectRatio);
+                    } else {
+                        newHeight = 400;
+                        newWidth = Math.round(newHeight * aspectRatio);
+                    }
+                    // Set canvas size
+                    canvas.width = newWidth;
+                    canvas.height = newHeight;
+                    // Set div size
+                    $('#scramblerpreview').css({
+                        width: newWidth + 'px',
+                        height: newHeight + 'px'
+                    });
+                    ctx.drawImage(img, 0, 0, newWidth, newHeight);
+                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '" style="width:100%; height:100%;">');
+                };
+                img.src = URL.createObjectURL($('#image')[0].files[0]);
+            });
+
+            $('#scramble-btn').click(function() {
+                var img = new Image();
+                img.onload = function() {
+                    var rows = parseInt($('#rows').val());
+                    var cols = parseInt($('#cols').val());
+                    var rowHeight = Math.ceil(canvas.height / rows);
+                    var colWidth = Math.ceil(canvas.width / cols);
+                    var tiles = [];
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            var tile = ctx.getImageData(j * colWidth, i * rowHeight, colWidth, rowHeight);
+                            tiles.push(tile);
+                        }
+                    }
+                    tiles.sort(function(a, b) { return Math.random() - 0.5; });
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    for (var i = 0; i < rows; i++) {
+                        for (var j = 0; j < cols; j++) {
+                            ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
+                        }
+                    }
+                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '" style="width:100%; height:100%;">');
+                };
+                img.src = URL.createObjectURL($('#image')[0].files[0]);
+            });
+        });
+    </script>
 </body>
 </html>
