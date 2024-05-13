@@ -47,18 +47,18 @@
 			var ctx = canvas.getContext('2d');
 			var tempCanvas = document.createElement('canvas');
 			var tempCtx = tempCanvas.getContext('2d');
-
+	
 			$('#image').change(function() {
 				var img = new Image();
 				img.onload = function() {
 					canvas.width = img.width;
 					canvas.height = img.height;
 					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 400, 400);
-					$('#preview').html('<img src="' + canvas.toDataURL() + '">');
+					$('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
 				};
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
-
+	
 			$('#scramble-btn').click(function() {
 				var img = new Image();
 				img.onload = function() {
@@ -75,7 +75,7 @@
 					ctx.drawImage(img, 0, 0, width, height);
 					tempCanvas.width = width;
 					tempCanvas.height = height;
-
+	
 					var tiles = [];
 					for (var i = 0; i < rows; i++) {
 						for (var j = 0; j < cols; j++) {
@@ -99,12 +99,12 @@
 					tempCanvas.width = 400;
 					tempCanvas.height = 400;
 					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 400, 400);
-					$('#preview').html('<img src="' + tempCanvas.toDataURL() + '">');
+					$('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
 					$('#download-btn').prop('disabled', false);
 				};
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
-
+	
 			$('#download-btn').click(function() {
 				var link = document.createElement('a');
 				link.download = 'scrambled_image.png';
