@@ -108,9 +108,9 @@
 					ctx = canvas.getContext('2d');
 					ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
 					tempCtx = tempCanvas.getContext('2d');
-					tempCanvas.width = 400;
-					tempCanvas.height = 400;
-					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 400, 400);
+					tempCanvas.width = img.width;
+					tempCanvas.height = img.height;
+					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, img.width, img.height);
 					$('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
 					$('#download-btn').prop('disabled', false);
 				};
