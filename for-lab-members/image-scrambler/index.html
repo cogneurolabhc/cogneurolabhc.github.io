@@ -47,15 +47,27 @@
 			var ctx = canvas.getContext('2d');
 			var tempCanvas = document.createElement('canvas');
 			var tempCtx = tempCanvas.getContext('2d');
+			canvas.width = 400;
+			canvas.height = 400;
 	
 			$('#image').change(function() {
 				var img = new Image();
 				img.onload = function() {
-					canvas.width = img.width;
-					canvas.height = img.height;
-					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 400, 400);
-					$('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
-				};
+	            // Calculate aspect ratio and set dimensions
+	            var aspectRatio = img.width / img.height;
+	            var newWidth, newHeight;
+	            if (img.width > img.height) {
+	                newWidth = 400;
+	                newHeight = Math.round(newWidth / aspectRatio);
+	            } else {
+	                newHeight = 400;
+	                newWidth = Math.round(newHeight * aspectRatio);
+	            }
+	            canvas.width = newWidth;
+	            canvas.height = newHeight;
+	            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, newWidth, newHeight);
+	            $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
+	        };
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
 	
