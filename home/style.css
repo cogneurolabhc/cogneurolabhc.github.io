@@ -71,3 +71,56 @@ body {
     display: block;
     height: auto;
 }
+
+.scamblerform {
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: purple;
+    border-width: medium;
+    border-radius: 12px;
+    text-align: center;
+    width: 360; /* Full width of the container */
+}
+
+.scramblerlabel {
+    font-weight: bold;
+}
+
+.scramblerinput[type=number] {
+    width: 30%; /* Full width minus padding */
+    padding: 5px; /* More comfortable padding */
+    box-sizing: border-box; /* Includes padding in width */
+}
+
+.scramblerinput[type=file] {
+    width: 60%; /* Full width minus padding */
+    padding: 5px; /* More comfortable padding */
+    box-sizing: border-box; /* Includes padding in width */
+}
+
+.scramblerbutton {
+    margin-top: 1em;
+    width: 55%; /* Full width buttons */
+}
+
+.scramblerpreview {
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    padding: 10px;
+    border-style: solid;
+    border-color: purple;
+    border-width: medium;
+    border-radius: 12px;
+    display: flex; /* Enables center alignment of the image inside */
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+}
+
+.scramblercontainer {
+    display: flex;
+    flex-direction: row; /* Aligns children horizontally */
+    align-items: center; /* Aligns items at the start of the container */
+    width: 1000px; /* Adjusted to match the maximum content width */
+}
