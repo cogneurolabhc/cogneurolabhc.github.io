@@ -61,10 +61,10 @@
                     var aspectRatio = img.width / img.height;
                     var newWidth, newHeight;
                     if (img.width > img.height) {
-                        newWidth = 400;
+                        newWidth = 400px;
                         newHeight = Math.round(newWidth / aspectRatio);
                     } else {
-                        newHeight = 400;
+                        newHeight = 400px;
                         newWidth = Math.round(newHeight * aspectRatio);
                     }
                     canvas.width = newWidth;
