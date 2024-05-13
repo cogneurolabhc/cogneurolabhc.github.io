@@ -47,38 +47,18 @@
 			var ctx = canvas.getContext('2d');
 			var tempCanvas = document.createElement('canvas');
 			var tempCtx = tempCanvas.getContext('2d');
-			canvas.width = 400px;
-			canvas.height = 400px;
-			$('#scramblerpreview').css({
-	                    width: 400px,
-	                    height: 400px
-	                });
-	
+
 			$('#image').change(function() {
 				var img = new Image();
 				img.onload = function() {
-                    // Calculate aspect ratio and set dimensions
-                    var aspectRatio = img.width / img.height;
-                    var newWidth, newHeight;
-                    if (img.width > img.height) {
-                        newWidth = 400px;
-                        newHeight = Math.round(newWidth / aspectRatio);
-                    } else {
-                        newHeight = 400px;
-                        newWidth = Math.round(newHeight * aspectRatio);
-                    }
-                    canvas.width = newWidth;
-                    canvas.height = newHeight;
-                    $('#scramblerpreview').css({
-                        width: newWidth + 'px',
-                        height: newHeight + 'px'
-                    });
-                    ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, newWidth, newHeight);
-                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
-	            };
+					canvas.width = img.width;
+					canvas.height = img.height;
+					ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 400, 400);
+					$('#preview').html('<img src="' + canvas.toDataURL() + '">');
+				};
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
-	
+
 			$('#scramble-btn').click(function() {
 				var img = new Image();
 				img.onload = function() {
@@ -95,7 +75,7 @@
 					ctx.drawImage(img, 0, 0, width, height);
 					tempCanvas.width = width;
 					tempCanvas.height = height;
-	
+
 					var tiles = [];
 					for (var i = 0; i < rows; i++) {
 						for (var j = 0; j < cols; j++) {
@@ -116,15 +96,15 @@
 					ctx = canvas.getContext('2d');
 					ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
 					tempCtx = tempCanvas.getContext('2d');
-					tempCanvas.width = img.width;
-					tempCanvas.height = img.height;
-					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, img.width, img.height);
-					$('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
+					tempCanvas.width = 400;
+					tempCanvas.height = 400;
+					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 400, 400);
+					$('#preview').html('<img src="' + tempCanvas.toDataURL() + '">');
 					$('#download-btn').prop('disabled', false);
 				};
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
-	
+
 			$('#download-btn').click(function() {
 				var link = document.createElement('a');
 				link.download = 'scrambled_image.png';
