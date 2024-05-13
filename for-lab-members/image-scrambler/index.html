@@ -70,7 +70,7 @@
                         height: newHeight + 'px'
                     });
                     ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, newWidth, newHeight);
-                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '" style="width:100%; height:100%;">');
+                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
 	            };
 				img.src = URL.createObjectURL($('#image')[0].files[0]);
 			});
@@ -78,10 +78,19 @@
 			$('#scramble-btn').click(function() {
 				var img = new Image();
 				img.onload = function() {
+					var width = img.width;
+					var height = img.height;
 					var rows = parseInt($('#rows').val());
 					var cols = parseInt($('#cols').val());
 					var rowHeight = Math.ceil(height / rows);
 					var colWidth = Math.ceil(width / cols);
+					width = colWidth * cols;
+					height = rowHeight * rows;
+					canvas.width = width;
+					canvas.height = height;
+					ctx.drawImage(img, 0, 0, width, height);
+					tempCanvas.width = width;
+					tempCanvas.height = height;
 	
 					var tiles = [];
 					for (var i = 0; i < rows; i++) {
@@ -92,19 +101,20 @@
 					}
 					tiles.sort(function(a, b) { return Math.random() - 0.5; });
 					ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    for (var i = 0; i < rows; i++) {
-                        for (var j = 0; j < cols; j++) {
-                            ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
-                        }
-                    }
-                    $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '" style="width:100%; height:100%;">');
-                    
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
 					for (var i = 0; i < rows; i++) {
 						for (var j = 0; j < cols; j++) {
 							ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
 						}
 					}
+					tempCtx.drawImage(canvas, 0, 0);
+					canvas.width = img.width;
+					canvas.height = img.height;
+					ctx = canvas.getContext('2d');
+					ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
+					tempCtx = tempCanvas.getContext('2d');
+					tempCanvas.width = img.width;
+					tempCanvas.height = img.height;
+					tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, img.width, img.height);
 					$('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
 					$('#download-btn').prop('disabled', false);
 				};
