@@ -105,6 +105,8 @@ button {
 }
 
 #scramblerpreview {
+    width: 400px;
+    height: 400px;
     margin: 10px;
     padding: 10px;
     border-style: solid;
