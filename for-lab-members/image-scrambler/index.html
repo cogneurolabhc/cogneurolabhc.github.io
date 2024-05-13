@@ -94,9 +94,16 @@
                         }
                     }
                     $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '" style="width:100%; height:100%;">');
+			$('#download-btn').prop('disabled', false);
                 };
                 img.src = URL.createObjectURL($('#image')[0].files[0]);
             });
+		$('#download-btn').click(function() {
+				var link = document.createElement('a');
+				link.download = 'scrambled_image.png';
+				link.href = canvas.toDataURL();
+				link.click();
+			});
         });
     </script>
 </body>
