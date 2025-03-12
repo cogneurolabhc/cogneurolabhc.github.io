@@ -131,7 +131,7 @@ body {
     width: 2px; /* Thin vertical line */
     height: 100px; /* Fixed height */
     background-color: lightgray;
-    position: absolute;
+    position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
