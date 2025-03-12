@@ -1,88 +1,6 @@
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.banner {
-    width: 100%;
-    height: 120px;
-    background-color: white;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-.logo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  height: 80px;
-  width: auto;
-}
-
-.labname {
-  position: absolute;
-  top: 40px;
-  left: 170px;
-  text-decoration: none;
-  font-size: 36px;
-  color: purple;
-  text-align: center;
-}
-
-.topnav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: purple;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.topnav .nav-links {
-  display: flex;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.topnav a {
-  align-items: center;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: white;
-  color: purple;
-}
-
-.main {
-    padding-left: 10%;
-    padding-top: 4%;
-    display: block;
-    height: auto;
-}
-
-.lab-members {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: flex-start;
-    padding: 20px;
-    max-width: 1000px;
-}
-
 .member {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: 500px;
@@ -93,10 +11,12 @@ body {
 }
 
 .member-photo-container {
+    width: 50%;  /* Fixed width: half the member box */
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 15px;
+    text-align: center;
+    padding-bottom: 10px;
 }
 
 .member-photo {
@@ -104,77 +24,30 @@ body {
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .member h2 {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     color: purple;
     text-align: center;
+    width: 100%;
 }
 
 .member-bio {
     flex-grow: 1;
-    padding-left: 15px;
-    border-left: 1px solid lightgray;
-}
-
-.member p {
-    margin: 5px 0 0;
-    font-size: 16px;
-    color: #333;
-}
-
-form {
-    padding: 10px;
-    margin: 10px;
-    border-style: solid;
-    border-color: purple;
-    border-width: medium;
-    border-radius: 12px;
+    width: 100%;
     text-align: center;
-    width: 360px; /* Full width of the container */
+    padding-top: 10px;
+    position: relative;
 }
 
-label {
-    font-weight: bold;
-}
-
-input[type=number] {
-    width: 30%; /* Full width minus padding */
-    padding: 5px; /* More comfortable padding */
-    box-sizing: border-box; /* Includes padding in width */
-}
-
-input[type=file] {
-    width: 60%; /* Full width minus padding */
-    padding: 5px; /* More comfortable padding */
-    box-sizing: border-box; /* Includes padding in width */
-}
-
-button {
-    margin-top: 1em;
-    width: 55%; /* Full width buttons */
-}
-
-#scramblerpreview {
-    margin: 10px;
-    padding: 10px;
-    border-style: solid;
-    border-color: purple;
-    border-width: medium;
-    border-radius: 12px;
-    display: flex; /* Enables center alignment of the image inside */
-    justify-content: center; /* Centers horizontally */
-    align-items: center;
-}
-
-.scramblercontainer {
-    display: flex;
-    margin: 0;
-    justify-content: center;
-    flex-direction: row; /* Aligns children horizontally */
-    align-items: start; /* Aligns items at the start of the container */
-    width: 1000px; /* Adjusted to match the maximum content width */
+.member-bio::before {
+    content: "";
+    display: block;
+    width: 80%;
+    height: 2px;  /* Fixed height */
+    background-color: lightgray;
+    margin: 10px auto;  /* Ensures space between name and bio */
 }
