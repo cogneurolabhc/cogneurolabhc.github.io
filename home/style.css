@@ -188,3 +188,15 @@ button {
     align-items: start; /* Aligns items at the start of the container */
     width: 1000px; /* Adjusted to match the maximum content width */
 }
+
+#preview {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	width: 500px;
+	height: 500px;
+	border-style: solid;
+	border-color: purple;
+	border-width: medium;
+	border-radius: 12px;
+}
