@@ -10,7 +10,7 @@ $(document).ready(function() {
             canvas.width = img.width;
             canvas.height = img.height;
             ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 500, 500);
-            $('#preview').html('<img src="' + canvas.toDataURL() + '">');
+            $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
         };
         img.src = URL.createObjectURL($('#image')[0].files[0]);
     });
@@ -57,7 +57,7 @@ $(document).ready(function() {
             tempCanvas.height = 500;
             tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 500, 500);
 
-            $('#preview').html('<img src="' + tempCanvas.toDataURL() + '">');
+            $('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
             $('#download-btn').prop('disabled', false);
         };
         img.src = URL.createObjectURL($('#image')[0].files[0]);
