@@ -22,22 +22,20 @@
     <div class="main">
         <h1>Image Scrambler</h1>
         <div class="scramblercontainer">
-            <div id="mainToolbox">
-                <form>
-                    <label for="image">Select an image:</label>
-                    <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png">
-                    <br><br>
-                    <label for="rows">Number of Rows:</label>
-                    <input type="number" id="rows" name="rows" min="1" max="10">
-                    <br><br>
-                    <label for="cols">Number of Columns:</label>
-                    <input type="number" id="cols" name="cols" min="1" max="10">
-                    <br><br>
-                    <button type="button" id="scramble-btn">Scramble Image</button>
-                    <button type="button" id="download-btn" disabled>Download</button>
-                </form>
-                <div id="scramblerpreview"></div>
-            </div>
+            <form>
+                <label for="image">Select an image:</label>
+                <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png">
+                <br><br>
+                <label for="rows">Number of Rows:</label>
+                <input type="number" id="rows" name="rows" min="1" max="10">
+                <br><br>
+                <label for="cols">Number of Columns:</label>
+                <input type="number" id="cols" name="cols" min="1" max="10">
+                <br><br>
+                <button type="button" id="scramble-btn">Scramble Image</button>
+                <button type="button" id="download-btn" disabled>Download</button>
+            </form>
+            <div id="scramblerpreview"></div>
         </div>
     </div>
 
