@@ -24,7 +24,7 @@ $(document).ready(function() {
             $('#scramblerpreview').css({
                 width: displayWidth + 'px',
                 height: displayHeight + 'px'
-            }).empty();
+            });
             canvas.width = displayWidth;
             canvas.height = displayHeight;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
