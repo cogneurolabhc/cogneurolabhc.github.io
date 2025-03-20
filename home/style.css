@@ -170,6 +170,12 @@ button {
     width: 55%; /* Full width buttons */
 }
 
+.main2 {
+    margin: 0;
+	font-family: Open Sans,Helvetica,Arial,sans-serif;
+	color: purple;
+}
+
 #scramblerpreview {
     display: inline-block;
 	margin: 10px;
