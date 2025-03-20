@@ -73,12 +73,12 @@ $(document).ready(function() {
                 height: displayHeight + 'px'
             });
 
-            // ctx = canvas.getContext('2d');
-            // ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
-            // tempCtx = tempCanvas.getContext('2d');
+            ctx = canvas.getContext('2d');
+            ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
+            tempCtx = tempCanvas.getContext('2d');
             // tempCanvas.width = 500;
             // tempCanvas.height = 500;
-            // tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 500, 500);
+            tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 500, 500);
 
             $('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
             $('#download-btn').prop('disabled', false);
