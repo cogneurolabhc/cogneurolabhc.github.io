@@ -7,9 +7,19 @@ $(document).ready(function() {
     $('#image').change(function() {
         var img = new Image();
         img.onload = function() {
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 500, 500);
+            var aspectRatio = img.width / img.height;
+            var displayWidth, displayHeight;
+            if (aspectRatio > 1) {
+                displayWidth = 500;
+                displayHeight = Math.round(500 / aspectRatio);
+            } else {
+                displayHeight = 500;
+                displayWidth = Math.round(500 * aspectRatio);
+            }
+            canvas.width = displayWidth;
+            canvas.height = displayHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, displayWidth, displayHeight);
             $('#scramblerpreview').html('<img src="' + canvas.toDataURL() + '">');
         };
         img.src = URL.createObjectURL($('#image')[0].files[0]);
