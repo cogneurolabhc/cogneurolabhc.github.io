@@ -168,6 +168,8 @@ button {
     width: 55%; /* Full width buttons */
 }
 
+
+
 #scramblerpreview {
     margin: 10px;
     padding: 10px;
@@ -180,11 +182,16 @@ button {
     align-items: center;
 }
 
-.scramblercontainer {
-    display: flex;
-    margin: 0;
-    justify-content: center;
-    flex-direction: row; /* Aligns children horizontally */
-    align-items: start; /* Aligns items at the start of the container */
-    width: 1000px; /* Adjusted to match the maximum content width */
+#scramblercontainer {
+    width: 1000px;
+	height: fit-content;
+	padding: 20px;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	margin-left: 120px;
+	margin-right: 120px;
+	border-style: solid;
+	border-color: purple;
+	border-width: medium;
+	border-radius: 12px;
 }
