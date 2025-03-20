@@ -1,139 +1,139 @@
 body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .banner {
-    width: 100%;
-    height: 120px;
-    background-color: white;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+	width: 100%;
+	height: 120px;
+	background-color: white;
+	background-size: cover;
+	background-position: center;
+	position: relative;
 }
 
 .logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    height: 80px;
-    width: auto;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	height: 80px;
+	width: auto;
 }
 
 .labname {
-    position: absolute;
-    top: 40px;
-    left: 170px;
-    text-decoration: none;
-    font-size: 36px;
-    color: purple;
-    text-align: center;
+	position: absolute;
+	top: 40px;
+	left: 170px;
+	text-decoration: none;
+	font-size: 36px;
+	color: purple;
+	text-align: center;
 }
 
 .topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: purple;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: purple;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
 }
 
 .topnav .nav-links {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	flex-grow: 1;
 }
 
 .topnav a {
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 18px;
+	align-items: center;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 18px;
 }
 
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+	background-color: #ddd;
+	color: black;
 }
 
 .topnav a.active {
-    background-color: white;
-    color: purple;
+	background-color: white;
+	color: purple;
 }
 
 .main {
-    padding-left: 10%;
-    padding-top: 4%;
-    display: block;
-    height: auto;
+	padding-left: 10%;
+	padding-top: 4%;
+	display: block;
+	height: auto;
 }
 
 .lab-members {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-    max-width: 600px;
-    align-items: flex-start; /* Align members to the left */
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px;
+	max-width: 600px;
+	align-items: flex-start; /* Align members to the left */
 }
 
 .member {
-    display: flex;
-    flex-direction: row; /* Arrange items side by side */
-    align-items: center;
-    width: 400px; /* Fixed width */
-    border: 2px solid purple;
-    border-radius: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
+	display: flex;
+	flex-direction: row; /* Arrange items side by side */
+	align-items: center;
+	width: 400px; /* Fixed width */
+	border: 2px solid purple;
+	border-radius: 10px;
+	padding: 15px;
+	background-color: #f9f9f9;
 }
 
 /* Left side: Photo and Name */
 .member-photo-container {
-    width: 50%; /* Takes half the space */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 10px;
+	width: 50%; /* Takes half the space */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 10px;
 }
 
 .member-photo {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 5px;
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-bottom: 5px;
 }
 
 .member h2 {
-    margin: 0;
-    font-size: 16px;
-    color: purple;
-    text-align: center;
+	margin: 0;
+	font-size: 16px;
+	color: purple;
+	text-align: center;
 }
 
 /* Right side: Bio */
 .member-bio {
-    width: 50%; /* Takes half the space */
-    padding: 10px;
-    text-align: left;
-    position: relative;
+	width: 50%; /* Takes half the space */
+	padding: 10px;
+	text-align: left;
+	position: relative;
 }
 
 /* Vertical dividing line */
 .member::before {
-    content: "";
-    width: 2px; /* Thin vertical line */
-    height: 100px; /* Fixed height */
-    background-color: lightgray;
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+	content: "";
+	width: 2px; /* Thin vertical line */
+	height: 100px; /* Fixed height */
+	background-color: lightgray;
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 form {
@@ -150,36 +150,36 @@ form {
 }
 
 label {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 input[type=number] {
-    width: 30%; /* Full width minus padding */
-    padding: 5px; /* More comfortable padding */
-    box-sizing: border-box; /* Includes padding in width */
+	width: 30%; /* Full width minus padding */
+	padding: 5px; /* More comfortable padding */
+	box-sizing: border-box; /* Includes padding in width */
 }
 
 input[type=file] {
-    width: 60%; /* Full width minus padding */
-    padding: 5px; /* More comfortable padding */
-    box-sizing: border-box; /* Includes padding in width */
+	width: 60%; /* Full width minus padding */
+	padding: 5px; /* More comfortable padding */
+	box-sizing: border-box; /* Includes padding in width */
 }
 
 button {
-    margin-top: 1em;
-    width: 55%; /* Full width buttons */
+	margin-top: 1em;
+	width: 55%; /* Full width buttons */
 }
 
 .main2 {
-    margin: 0;
+	margin: 0;
 	font-family: Open Sans,Helvetica,Arial,sans-serif;
 	color: purple;
 	padding-left: 10%;
-    padding-top: 4%;
+	padding-top: 4%;
 }
 
 #scramblerpreview {
-    display: inline-block;
+	display: inline-block;
 	margin: 10px;
 	padding: 10px;
 	width: 500px;
@@ -191,7 +191,7 @@ button {
 }
 
 #scramblercontainer {
-    width: 1000px;
+	width: 1000px;
 	height: fit-content;
 	padding: 20px;
 	margin-top: 40px;
