@@ -65,19 +65,15 @@ $(document).ready(function() {
                     ctx.putImageData(tiles[i * cols + j], j * colWidth, i * rowHeight);
                 }
             }
-            tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
+
             tempCtx.drawImage(canvas, 0, 0);
-
-            $('#scramblerpreview').css({
-                width: displayWidth + 'px',
-                height: displayHeight + 'px'
-            });
-
+            canvas.width = img.width;
+            canvas.height = img.height;
             ctx = canvas.getContext('2d');
             ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
             tempCtx = tempCanvas.getContext('2d');
-            // tempCanvas.width = 500;
-            // tempCanvas.height = 500;
+            tempCanvas.width = 500;
+            tempCanvas.height = 500;
             tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 500, 500);
 
             $('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
