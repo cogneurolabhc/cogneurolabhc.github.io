@@ -16,6 +16,10 @@ $(document).ready(function() {
                 displayHeight = 500;
                 displayWidth = Math.round(500 * aspectRatio);
             }
+            $('#scramblerpreview').css({
+                width: displayWidth + 'px',
+                height: displayHeight + 'px'
+            });
             canvas.width = displayWidth;
             canvas.height = displayHeight;
             ctx.clearRect(0, 0, canvas.width, canvas.height);
