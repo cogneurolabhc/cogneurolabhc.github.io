@@ -188,15 +188,3 @@ button {
     align-items: start; /* Aligns items at the start of the container */
     width: 1000px; /* Adjusted to match the maximum content width */
 }
-
-#preview {
-    margin: 10px;
-    padding: 10px;
-    border-style: solid;
-    border-color: purple;
-    border-width: medium;
-    border-radius: 12px;
-    display: flex; /* Enables center alignment of the image inside */
-    justify-content: center; /* Centers horizontally */
-    align-items: center;
-}
