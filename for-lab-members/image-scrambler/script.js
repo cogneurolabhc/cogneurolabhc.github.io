@@ -3,6 +3,7 @@ $(document).ready(function() {
     var ctx = canvas.getContext('2d');
     var tempCanvas = document.createElement('canvas');
     var tempCtx = tempCanvas.getContext('2d');
+    var displayWidth, displayHeight;
 
     $('#scramblerpreview').css({
         width: '500px',
@@ -13,7 +14,6 @@ $(document).ready(function() {
         var img = new Image();
         img.onload = function() {
             var aspectRatio = img.width / img.height;
-            var displayWidth, displayHeight;
             if (aspectRatio > 1) {
                 displayWidth = 500;
                 displayHeight = Math.round(500 / aspectRatio);
@@ -72,9 +72,14 @@ $(document).ready(function() {
             ctx = canvas.getContext('2d');
             ctx.drawImage(tempCanvas, 0, 0, width, height, 0, 0, img.width, img.height);
             tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = 500;
-            tempCanvas.height = 500;
-            tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 500, 500);
+            tempCanvas.width = displayWidth;
+            tempCanvas.height = displayHeight;
+            tempCtx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, displayWidth, displayHeight);
+
+            $('#scramblerpreview').css({
+                width: displayWidth + 'px',
+                height: displayHeight + 'px'
+            });
 
             $('#scramblerpreview').html('<img src="' + tempCanvas.toDataURL() + '">');
             $('#download-btn').prop('disabled', false);
