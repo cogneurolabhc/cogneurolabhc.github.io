@@ -199,13 +199,6 @@ button {
     object-fit: contain;
 }
 
-#scramblerpreview::before {
-    content: "Upload an image to preview";
-    color: gray;
-    font-size: 18px;
-    text-align: center;
-}
-
 #scramblercontainer {
 	width: 1000px;
 	height: fit-content;
